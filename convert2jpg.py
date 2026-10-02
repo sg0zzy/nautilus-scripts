@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# Convert selected images (.png/.jpg) to progressive JPEG q85, keeping the original
+# if it is already smaller; originals are moved to the trash. Desktop notification.
+# Requires Debian packages: python3-pil python3-gi libnotify4
 import os
 import sys
 import tempfile

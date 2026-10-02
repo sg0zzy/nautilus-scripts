@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+# Batch convert selected FLAC files to MP3 256k; default destination is
+# ~/Music/mp3 (override with env FLAC2MP3_OUTPUT_ROOT). Existing .mp3 just
+# copied, tags copied via mutagen. Worker count: env FLAC2MP3_CONVERT_WORKERS.
+# Requires Debian packages: ffmpeg python3-mutagen python3-gi libnotify4
 import os
 import shutil
 import subprocess
@@ -21,8 +25,9 @@ DEFAULT_MAX_STAGED_FLACS = 16
 # for checking the queue and temp files:
 # watch -n 1 'find /dev/shm/tempmusic -type f -printf "%s %p\n" 2>/dev/null | numfmt --field=1 --to=iec | sort -h'
 
-# OUTPUT_ROOT = Path.home() / "Music" / "mp3"
-OUTPUT_ROOT = Path("/media/MP3")
+# Output destination. Defaults to ~/Music/mp3; override with env
+# FLAC2MP3_OUTPUT_ROOT to point at a dedicated music mount.
+OUTPUT_ROOT = Path(os.environ.get("FLAC2MP3_OUTPUT_ROOT", str(Path.home() / "Music" / "mp3")))
 TEMP_ROOT = Path("/dev/shm/tempmusic")
 FLAC_INFO_ATTRS = "standard::name,standard::display-name,standard::type"
 AUDIO_SUFFIXES = {".flac", ".mp3"}

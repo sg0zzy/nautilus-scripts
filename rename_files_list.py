@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# GUI batch rename: Paste the selected file list, type one new name per line,
+# then Rename (original extension kept; logs to rename_files.log).
+# Requires Debian packages: python3-tk
 
 import os
 import tkinter as tk
@@ -30,7 +33,7 @@ class MyTextBox:
         labelFont = tkinter.font.Font(family="Courier", size=15, weight="normal", slant="roman")
 
         if os.getenv('NAUTILUS_SCRIPT_SELECTED_FILE_PATHS') is None:
-            files = "/home/ste2/Music/flac/Unknown Artist-Joao1/01.Track 1.flac\n/home/ste2/Music/flac/Unknown Artist-Joao1/02.Track 2.flac"
+            files = "/example/flac/01.Track 1.flac\n/example/flac/02.Track 2.flac"
         else:
             files = os.getenv('NAUTILUS_SCRIPT_SELECTED_FILE_PATHS')
 

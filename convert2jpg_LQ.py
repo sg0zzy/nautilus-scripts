@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+# Like convert2jpg.py but also downscales the longest side to MAX_SIDE (1080 px, LANCZOS).
+# Requires Debian packages: python3-pil python3-gi libnotify4
 import os
 import sys
 import tempfile
